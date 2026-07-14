@@ -1,0 +1,162 @@
+@startuml Melihat Dashboard
+
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 25
+
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 10
+skinparam SequenceArrowThickness 5
+
+scale 1.3
+
+actor Pelapor
+
+boundary "Halaman Dashboard" as DashboardUI
+control "Dashboard" as Dashboard
+entity "Data Laporan" as Laporan
+entity "Data Perbaikan" as Perbaikan
+
+Pelapor -> DashboardUI : Mengakses Halaman Dashboard
+
+DashboardUI -> Dashboard : Meminta Data Dashboard
+
+Dashboard -> Laporan : Mengambil Data Dashboard
+
+Laporan --> Dashboard : Data Dashboard
+
+Dashboard --> DashboardUI : Menampilkan Dashboard
+
+
+== Laporan Aktif ==
+
+Pelapor -> DashboardUI : Memilih Tab Laporan Aktif
+
+DashboardUI -> Dashboard : Meminta Data Laporan Aktif
+
+Dashboard -> Laporan : Mengambil Data Laporan Aktif
+
+Laporan --> Dashboard : Data Laporan Aktif
+
+Dashboard --> DashboardUI : Menampilkan Daftar Laporan Aktif
+
+Pelapor -> DashboardUI : Memilih Salah Satu Laporan
+
+DashboardUI -> Dashboard : Meminta Detail Laporan
+
+Dashboard -> Laporan : Mengambil Detail Laporan
+
+Laporan --> Dashboard : Detail Laporan
+
+Dashboard -> Perbaikan : Mengambil Status Laporan
+
+Perbaikan --> Dashboard : Status Laporan
+
+Dashboard --> DashboardUI : Menampilkan Detail Laporan
+
+Dashboard --> DashboardUI : Menampilkan Status Laporan
+
+
+== Sedang Diproses ==
+
+Pelapor -> DashboardUI : Memilih Tab Sedang Diproses
+
+DashboardUI -> Dashboard : Meminta Data Laporan Sedang Diproses
+
+Dashboard -> Laporan : Mengambil Data Laporan Sedang Diproses
+
+Laporan --> Dashboard : Data Laporan Sedang Diproses
+
+Dashboard --> DashboardUI : Menampilkan Daftar Laporan Sedang Diproses
+
+Pelapor -> DashboardUI : Memilih Salah Satu Laporan
+
+DashboardUI -> Dashboard : Meminta Detail Laporan
+
+Dashboard -> Laporan : Mengambil Detail Laporan
+
+Laporan --> Dashboard : Detail Laporan
+
+Dashboard -> Perbaikan : Mengambil Status Laporan
+
+Perbaikan --> Dashboard : Status Laporan
+
+Dashboard --> DashboardUI : Menampilkan Detail Laporan
+
+Dashboard --> DashboardUI : Menampilkan Status Laporan
+
+
+== Perlu Validasi ==
+
+Pelapor -> DashboardUI : Memilih Tab Perlu Validasi
+
+DashboardUI -> Dashboard : Meminta Data Laporan Perlu Validasi
+
+Dashboard -> Laporan : Mengambil Data Laporan Perlu Validasi
+
+Laporan --> Dashboard : Data Laporan Perlu Validasi
+
+Dashboard --> DashboardUI : Menampilkan Daftar Laporan Perlu Validasi
+
+Pelapor -> DashboardUI : Memilih Salah Satu Laporan
+
+DashboardUI -> Dashboard : Meminta Detail Laporan
+
+Dashboard -> Laporan : Mengambil Detail Laporan
+
+Laporan --> Dashboard : Detail Laporan
+
+Dashboard -> Perbaikan : Mengambil Status Laporan
+
+Perbaikan --> Dashboard : Status Laporan
+
+Dashboard --> DashboardUI : Menampilkan Detail Laporan
+
+Dashboard --> DashboardUI : Menampilkan Status Laporan
+
+Pelapor -> DashboardUI : Mengklik Tombol Selesai dan Beri Rating
+
+DashboardUI --> Pelapor : Menampilkan Form Rating dan Ulasan
+
+Pelapor -> DashboardUI : Mengisi Rating dan Ulasan
+
+Pelapor -> DashboardUI : Mengklik Tombol Kirim Penilaian
+
+DashboardUI -> Dashboard : Menyimpan Rating dan Ulasan
+
+Dashboard -> Perbaikan : Menyimpan Rating dan Ulasan
+
+Perbaikan --> Dashboard : Rating dan Ulasan Tersimpan
+
+Dashboard --> DashboardUI : Menampilkan Pesan Berhasil
+
+
+== Laporan Selesai ==
+
+Pelapor -> DashboardUI : Memilih Tab Laporan Selesai
+
+DashboardUI -> Dashboard : Meminta Data Laporan Selesai
+
+Dashboard -> Laporan : Mengambil Data Laporan Selesai
+
+Laporan --> Dashboard : Data Laporan Selesai
+
+Dashboard --> DashboardUI : Menampilkan Daftar Laporan Selesai
+
+Pelapor -> DashboardUI : Memilih Salah Satu Laporan
+
+DashboardUI -> Dashboard : Meminta Detail Laporan
+
+Dashboard -> Laporan : Mengambil Detail Laporan
+
+Laporan --> Dashboard : Detail Laporan
+
+Dashboard -> Perbaikan : Mengambil Status Laporan
+
+Perbaikan --> Dashboard : Status Laporan
+
+Dashboard --> DashboardUI : Menampilkan Detail Laporan
+
+Dashboard --> DashboardUI : Menampilkan Status Laporan
+
+@enduml

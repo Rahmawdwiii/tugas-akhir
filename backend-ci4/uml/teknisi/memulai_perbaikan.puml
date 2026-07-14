@@ -1,0 +1,29 @@
+@startuml Memulai Perbaikan
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Teknisi
+
+boundary "Halaman Jadwal Perbaikan" as Jadwal
+control "Perbaikan" as Perbaikan
+entity "Data Laporan" as Laporan
+
+Teknisi -> Jadwal : Mengakses Halaman Dashboard
+Jadwal --> Teknisi : Menampilkan Halaman Dashboard
+
+Teknisi -> Jadwal : Mengakses Halaman Jadwal Perbaikan
+
+Teknisi -> Jadwal : Mengklik Laporan yang Sudah Dijadwalkan
+
+Teknisi -> Jadwal : Mengklik Tombol Kerjakan
+
+Jadwal -> Perbaikan : Memperbarui Status Menjadi Diproses
+
+Perbaikan -> Laporan : Memperbarui Status Diproses
+
+Laporan --> Perbaikan : Status Berhasil Disimpan
+
+Perbaikan --> Jadwal : Memperbarui Progress ke Admin dan Pelapor
+
+@enduml

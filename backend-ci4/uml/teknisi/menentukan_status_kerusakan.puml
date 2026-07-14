@@ -1,0 +1,40 @@
+@startuml Menentukan Status Kerusakan
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Teknisi
+
+boundary "Halaman Jadwal Perbaikan" as Jadwal
+control "Status Kerusakan" as Status
+entity "Data Laporan" as Laporan
+
+Teknisi -> Jadwal : Mengakses Halaman Dashboard
+Jadwal --> Teknisi : Menampilkan Halaman Dashboard
+
+Teknisi -> Jadwal : Mengakses Halaman Jadwal Perbaikan
+
+Teknisi -> Jadwal : Mengklik Laporan pada Daftar Tugas Baru
+
+Jadwal -> Status : Meminta Detail Laporan
+
+Status -> Laporan : Mengambil Detail Laporan
+Laporan --> Status : Data Detail Laporan
+
+Status --> Jadwal : Menampilkan Detail Laporan
+Status --> Jadwal : Menampilkan Alert Hasil FP-Growth
+Status --> Jadwal : Menampilkan Dropdown Status Kerusakan
+
+Teknisi -> Jadwal : Menentukan Status Kerusakan
+
+Teknisi -> Jadwal : Mengklik Tombol Kirim
+
+Jadwal -> Status : Memperbarui Status Kerusakan
+
+Status -> Laporan : Menyimpan Status Kerusakan
+
+Laporan --> Status : Status Tersimpan
+
+Status --> Jadwal : Menampilkan Pesan Berhasil
+
+@enduml

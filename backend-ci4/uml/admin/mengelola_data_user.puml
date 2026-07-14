@@ -1,0 +1,77 @@
+@startuml Mengelola Data User
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Admin
+
+boundary "Halaman User" as UserPage
+control "Data User" as ProsesUser
+entity "Data User" as User
+
+Admin -> UserPage : Mengakses Halaman Dashboard
+UserPage --> Admin : Menampilkan Halaman Dashboard
+
+Admin -> UserPage : Mengakses Halaman User
+
+alt Tambah
+
+    Admin -> UserPage : Mengklik Tombol Tambah
+
+    UserPage -> ProsesUser : Menampilkan Pop-up Formulir Data User
+
+    ProsesUser --> UserPage : Menampilkan Pop-up Formulir Data User
+
+    Admin -> UserPage : Mengisi Data pada Formulir
+
+    Admin -> UserPage : Mengklik Tombol Simpan
+
+    UserPage -> ProsesUser : Menyimpan Data User
+
+    ProsesUser -> User : Menyimpan Data User
+
+    User --> ProsesUser : Data Berhasil Disimpan
+
+    ProsesUser --> UserPage : Menampilkan Pesan Berhasil & Menyimpan Data ke Tabel
+
+end
+
+alt Edit
+
+    Admin -> UserPage : Mengklik Tombol Edit
+
+    UserPage -> ProsesUser : Menampilkan Pop-up Formulir Edit User
+
+    ProsesUser --> UserPage : Menampilkan Pop-up Formulir Edit User
+
+    Admin -> UserPage : Mengedit Data pada Formulir
+
+    Admin -> UserPage : Mengklik Tombol Simpan
+
+    UserPage -> ProsesUser : Menyimpan Perubahan Data User
+
+    ProsesUser -> User : Menyimpan Perubahan
+
+    User --> ProsesUser : Perubahan Berhasil Disimpan
+
+end
+
+alt Hapus
+
+    Admin -> UserPage : Mengklik Tombol Hapus
+
+    UserPage -> ProsesUser : Menampilkan Pesan Konfirmasi Hapus
+
+    ProsesUser --> UserPage : Menampilkan Pesan Konfirmasi Hapus
+
+    Admin -> UserPage : Mengkonfirmasi Penghapusan
+
+    UserPage -> ProsesUser : Menghapus Data User dari Tabel
+
+    ProsesUser -> User : Menghapus Data User
+
+    User --> ProsesUser : Data Berhasil Dihapus
+
+end
+
+@enduml

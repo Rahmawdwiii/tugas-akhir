@@ -1,0 +1,125 @@
+@startuml Mengelola Antrian Perbaikan
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ActivityBorderThickness 3
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+
+|Admin|
+
+start
+
+:Mengakses Halaman Dashboard;
+
+:Mengakses Menu Antrian Perbaikan;
+
+|Sistem|
+
+:Menampilkan Data Antrian Perbaikan;
+
+|Admin|
+
+if (Pilih Tab?) then (Penugasan Baru)
+
+    :Memilih Salah Satu Laporan;
+
+    |Sistem|
+
+    :Menampilkan Detail Laporan;
+
+    if (Status Kerusakan Sudah Ditentukan?) then (Ya)
+
+        |Admin|
+
+        :Mengklik Tombol Tugaskan;
+
+        :Memilih Tanggal Perbaikan;
+
+        :Mengklik Tombol Simpan;
+
+        |Sistem|
+
+        :Menambahkan Laporan ke
+        Jadwal Perbaikan Teknisi;
+
+        :Memperbarui Status
+        pada Pelapor;
+
+    else (Tidak)
+
+        |Sistem|
+
+        :Menampilkan Informasi
+        Status Kerusakan Belum Ditentukan;
+
+        :Menampilkan Kembali
+        Daftar Antrian;
+
+    endif
+
+elseif (Sedang Diproses)
+
+    :Memilih Salah Satu Laporan;
+
+    :Mengklik Laporan;
+
+    |Sistem|
+
+    :Menampilkan Detail Laporan;
+
+    |Admin|
+
+    :Melihat Status Laporan;
+
+    :Melihat Progress Perbaikan;
+
+elseif (Validasi Akhir)
+
+    :Memilih Salah Satu Laporan;
+
+    :Mengklik Laporan;
+
+    |Sistem|
+
+    :Menampilkan Detail Laporan;
+
+    |Admin|
+
+    :Melihat Rating dan Ulasan;
+
+    :Mengklik Tombol Validasi;
+
+    |Sistem|
+
+    :Menampilkan Konfirmasi Validasi;
+
+    |Admin|
+
+    :Mengkonfirmasi Validasi;
+
+    |Sistem|
+
+    :Menampilkan Pesan Berhasil;
+
+    :Memindahkan Data ke Riwayat;
+
+else (Riwayat)
+
+    |Admin|
+
+    :Memilih Salah Satu Laporan;
+
+    :Mengklik Laporan;
+
+    |Sistem|
+
+    :Menampilkan Detail Laporan;
+
+endif
+
+stop
+
+@endumlr4

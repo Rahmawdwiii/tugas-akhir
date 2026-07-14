@@ -1,0 +1,39 @@
+@startuml Logout
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Pelapor
+
+boundary "Dashboard" as Dashboard
+
+control "Logout" as Logout
+
+entity "Data User" as User
+
+Pelapor -> Dashboard : Mengklik Tombol Logout
+
+Dashboard -> Logout : Menghapus Sesi Pengguna
+
+activate Logout
+
+Logout -> User : Menghapus Sesi Pengguna
+
+activate User
+User --> Logout : Sesi Pengguna Dihapus
+deactivate User
+
+Logout -> Dashboard : Mengarahkan ke Halaman Landing Page
+
+deactivate Logout
+
+@enduml

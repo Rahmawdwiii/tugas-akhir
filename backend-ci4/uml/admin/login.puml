@@ -1,0 +1,63 @@
+@startuml Login Admin
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+
+skinparam DefaultFontName Arial
+skinparam DefaultFontSize 14
+skinparam DefaultFontStyle bold
+
+skinparam SequenceMessageAlign center
+
+skinparam actor {
+    BorderThickness 3
+    FontStyle bold
+    FontSize 15
+}
+
+skinparam participant {
+    BorderThickness 3
+    FontStyle bold
+    FontSize 14
+}
+
+hide footbox
+
+actor Admin
+
+boundary "Halaman Login" as Login
+
+control "Autentikasi" as Auth
+
+entity "Data User" as DataUser
+
+Admin -> Login : Mengakses Halaman Login
+
+Login -> Admin : Menampilkan Halaman Login
+
+Admin -> Login : Memasukkan Username dan Password
+
+Login -> Auth : Mengirim Data Login
+
+activate Auth
+
+Auth -> DataUser : Memeriksa Username dan Password
+
+activate DataUser
+DataUser -> Auth : Hasil Verifikasi
+deactivate DataUser
+
+alt Data Valid
+
+Auth -> Login : Mengarahkan ke Dashboard
+
+else Data Tidak Valid
+
+Auth -> Login : Menampilkan Pesan Error
+
+end
+
+deactivate Auth
+
+@enduml

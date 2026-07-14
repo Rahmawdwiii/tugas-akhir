@@ -1,0 +1,63 @@
+@startuml Melihat Status Laporan
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Pelapor
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Halaman Status \n Laporan" as StatusPage
+
+control "Status Laporan" as Status
+
+entity "Data Laporan" as DataLaporan
+
+Pelapor -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Pelapor : Menampilkan Halaman Dashboard
+
+Pelapor -> StatusPage : Memilih Tab Status Laporan
+
+StatusPage -> Status : Meminta Daftar Laporan
+
+activate Status
+
+Status -> DataLaporan : Mengambil Data Laporan
+
+activate DataLaporan
+DataLaporan --> Status : Data Laporan
+deactivate DataLaporan
+
+Status -> StatusPage : Menampilkan Daftar Laporan
+
+deactivate Status
+
+Pelapor -> StatusPage : Mengklik Salah Satu Laporan
+
+StatusPage -> Status : Meminta Detail Laporan
+
+activate Status
+
+Status -> DataLaporan : Mengambil Detail Laporan
+
+activate DataLaporan
+DataLaporan --> Status : Detail Laporan
+deactivate DataLaporan
+
+Status -> StatusPage : Menampilkan Detail Laporan
+
+Status -> StatusPage : Menampilkan Status Laporan
+
+deactivate Status
+
+@enduml

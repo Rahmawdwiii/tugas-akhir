@@ -1,0 +1,180 @@
+@startuml Mengelola Antrian Perbaikan
+
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 20
+
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 10
+skinparam SequenceArrowThickness 5
+
+scale 1.3
+
+actor Admin
+
+boundary "Halaman Antrian Perbaikan" as Antrian
+control "Antrian Perbaikan" as Kelola
+entity "Data Laporan" as Laporan
+entity "Jadwal Perbaikan" as Jadwal
+
+Admin -> Antrian : Mengakses Menu Antrian Perbaikan
+
+Antrian -> Kelola : Meminta Data Antrian Perbaikan
+
+Kelola -> Laporan : Mengambil Data Antrian Perbaikan
+
+Laporan --> Kelola : Data Antrian Perbaikan
+
+Kelola --> Antrian : Menampilkan Data Antrian Perbaikan
+
+
+== Penugasan Baru ==
+
+Admin -> Antrian : Mengklik Tab Penugasan Baru
+
+Antrian -> Kelola : Meminta Data Penugasan Baru
+
+Kelola -> Laporan : Mengambil Data Penugasan Baru
+
+Laporan --> Kelola : Data Penugasan Baru
+
+Kelola --> Antrian : Menampilkan Data Penugasan Baru
+
+Admin -> Antrian : Memilih Salah Satu Laporan
+
+Antrian -> Kelola : Meminta Detail Laporan
+
+Kelola -> Laporan : Mengambil Detail Laporan
+
+Laporan --> Kelola : Detail Laporan
+
+Kelola --> Antrian : Menampilkan Detail Laporan
+
+Kelola -> Laporan : Memeriksa Status Kerusakan
+
+Laporan --> Kelola : Status Kerusakan
+
+alt Status Kerusakan Sudah Ditentukan
+
+    Admin -> Antrian : Mengklik Tombol Tugaskan
+
+    Antrian --> Admin : Menampilkan Form Penjadwalan
+
+    Admin -> Antrian : Memilih Tanggal Perbaikan
+
+    Admin -> Antrian : Mengklik Tombol Simpan
+
+    Antrian -> Kelola : Menyimpan Penjadwalan
+
+    Kelola -> Jadwal : Menambahkan Laporan ke Jadwal Perbaikan Teknisi
+
+    Jadwal --> Kelola : Jadwal Perbaikan Tersimpan
+
+    Kelola -> Laporan : Memperbarui Status pada Pelapor
+
+    Laporan --> Kelola : Status Pelapor Diperbarui
+
+else Status Kerusakan Belum Ditentukan
+
+    Kelola --> Antrian : Menampilkan Informasi Status Kerusakan Belum Ditentukan
+
+    Kelola --> Antrian : Menampilkan Kembali Daftar Antrian
+
+end
+
+
+== Sedang Diproses ==
+
+Admin -> Antrian : Mengklik Tab Sedang Diproses
+
+Antrian -> Kelola : Meminta Data Sedang Diproses
+
+Kelola -> Laporan : Mengambil Data Sedang Diproses
+
+Laporan --> Kelola : Data Sedang Diproses
+
+Kelola --> Antrian : Menampilkan Data Sedang Diproses
+
+Admin -> Antrian : Memilih Salah Satu Laporan
+
+Admin -> Antrian : Mengklik Laporan
+
+Antrian -> Kelola : Meminta Detail Laporan
+
+Kelola -> Laporan : Mengambil Detail Laporan
+
+Laporan --> Kelola : Detail Laporan
+
+Kelola --> Antrian : Menampilkan Detail Laporan
+
+Admin -> Antrian : Melihat Status Laporan
+
+Admin -> Antrian : Melihat Progress Perbaikan
+
+
+== Validasi Akhir ==
+
+Admin -> Antrian : Mengklik Tab Validasi Akhir
+
+Antrian -> Kelola : Meminta Data Validasi Akhir
+
+Kelola -> Laporan : Mengambil Data Validasi Akhir
+
+Laporan --> Kelola : Data Validasi Akhir
+
+Kelola --> Antrian : Menampilkan Data Validasi Akhir
+
+Admin -> Antrian : Memilih Salah Satu Laporan
+
+Admin -> Antrian : Mengklik Laporan
+
+Antrian -> Kelola : Meminta Detail Laporan
+
+Kelola -> Laporan : Mengambil Detail Laporan
+
+Laporan --> Kelola : Detail Laporan
+
+Kelola --> Antrian : Menampilkan Detail Laporan
+
+Admin -> Antrian : Melihat Rating dan Ulasan
+
+Admin -> Antrian : Mengklik Tombol Validasi
+
+Antrian --> Admin : Menampilkan Konfirmasi Validasi
+
+Admin -> Antrian : Mengkonfirmasi Validasi
+
+Antrian -> Kelola : Memvalidasi Laporan
+
+Kelola --> Antrian : Menampilkan Pesan Berhasil
+
+Kelola -> Laporan : Memindahkan Data ke Riwayat
+
+Laporan --> Kelola : Data Berhasil Dipindahkan ke Riwayat
+
+
+== Riwayat ==
+
+Admin -> Antrian : Mengklik Tab Riwayat
+
+Antrian -> Kelola : Meminta Data Riwayat
+
+Kelola -> Laporan : Mengambil Data Riwayat
+
+Laporan --> Kelola : Data Riwayat
+
+Kelola --> Antrian : Menampilkan Data Riwayat
+
+Admin -> Antrian : Memilih Salah Satu Laporan
+
+Admin -> Antrian : Mengklik Laporan
+
+Antrian -> Kelola : Meminta Detail Laporan
+
+Kelola -> Laporan : Mengambil Detail Laporan
+
+Laporan --> Kelola : Detail Laporan
+
+Kelola --> Antrian : Menampilkan Detail Laporan
+
+@enduml

@@ -1,0 +1,57 @@
+@startuml Menginput Laporan Kerusakan
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Admin
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Halaman Laporan Kerusakan" as LaporanPage
+control "Laporan Kerusakan" as Laporan
+entity "Data Laporan" as DataLaporan
+
+Admin -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Admin : Menampilkan Halaman Dashboard
+
+Admin -> LaporanPage : Mengakses Menu Laporan Kerusakan
+
+LaporanPage -> Laporan : Menampilkan Daftar Laporan Kerusakan
+
+Laporan -> LaporanPage : Menampilkan Daftar Laporan Kerusakan
+
+Admin -> LaporanPage : Mengklik Tombol Tambah
+
+LaporanPage -> Laporan : Menampilkan Form Tambah Laporan Kerusakan
+
+Laporan -> LaporanPage : Menampilkan Form Tambah Laporan Kerusakan
+
+Admin -> LaporanPage : Mengisi Data Laporan Kerusakan
+
+Admin -> LaporanPage : Mengklik Tombol Simpan
+
+LaporanPage -> Laporan : Menyimpan Laporan Kerusakan
+
+activate Laporan
+
+Laporan -> DataLaporan : Menyimpan Laporan Kerusakan
+
+activate DataLaporan
+DataLaporan --> Laporan : Data Berhasil Disimpan
+deactivate DataLaporan
+
+Laporan -> LaporanPage : Menampilkan Pesan Berhasil
+
+deactivate Laporan
+
+@enduml

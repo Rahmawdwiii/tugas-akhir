@@ -1,0 +1,73 @@
+@startuml Melihat Riwayat Perbaikan
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Admin
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Halaman Riwayat Perbaikan" as RiwayatPage
+
+control "Riwayat Perbaikan" as Riwayat
+
+entity "Data Riwayat" as DataRiwayat
+
+Admin -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Admin : Menampilkan Halaman Dashboard
+
+Admin -> RiwayatPage : Mengakses Menu Riwayat Perbaikan
+
+RiwayatPage -> Riwayat : Meminta Data Riwayat Perbaikan
+
+activate Riwayat
+
+Riwayat -> DataRiwayat : Mengambil Data Riwayat
+
+activate DataRiwayat
+DataRiwayat --> Riwayat : Data Riwayat
+deactivate DataRiwayat
+
+Riwayat -> RiwayatPage : Menampilkan Data Riwayat Perbaikan
+
+deactivate Riwayat
+
+alt Menggunakan Filter
+
+    Admin -> RiwayatPage : Memilih Filter Data
+
+    RiwayatPage -> Riwayat : Meminta Hasil Filter
+
+    Riwayat -> DataRiwayat : Mengambil Data Hasil Filter
+
+    DataRiwayat --> Riwayat : Data Hasil Filter
+
+    Riwayat -> RiwayatPage : Menampilkan Hasil Filter
+
+    alt Export Excel
+
+        Admin -> RiwayatPage : Mengklik Tombol Excel
+
+        RiwayatPage -> Riwayat : Menghasilkan File Excel
+
+    else Export PDF
+
+        Admin -> RiwayatPage : Mengklik Tombol PDF
+
+        RiwayatPage -> Riwayat : Menghasilkan File PDF
+
+    end
+
+end
+
+@enduml

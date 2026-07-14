@@ -1,0 +1,155 @@
+@startuml Mengelola Jadwal Perbaikan
+
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Teknisi
+
+boundary "Halaman Jadwal Perbaikan" as Jadwal
+control "Jadwal Perbaikan" as Kelola
+entity "Data Laporan" as Laporan
+
+Teknisi -> Jadwal : Mengakses Menu Jadwal Perbaikan
+
+Jadwal -> Kelola : Meminta Data Jadwal
+
+Kelola -> Laporan : Mengambil Data Jadwal
+
+Laporan --> Kelola : Data Jadwal
+
+Kelola --> Jadwal : Menampilkan Data Jadwal
+
+== Menentukan Status Kerusakan ==
+
+Teknisi -> Jadwal : Memilih Laporan pada Tab Tugas Baru
+
+Jadwal -> Kelola : Meminta Detail Laporan
+
+Kelola -> Laporan : Mengambil Detail Laporan
+
+Laporan --> Kelola : Detail Laporan
+
+Kelola --> Jadwal : Menampilkan Detail Laporan
+
+Teknisi -> Jadwal : Menentukan Status Kerusakan
+
+Jadwal -> Kelola : Menyimpan Status Kerusakan
+
+Kelola -> Laporan : Memperbarui Status Kerusakan
+
+Laporan --> Kelola : Status Tersimpan
+
+Kelola --> Jadwal : Menampilkan Pesan Berhasil
+
+== Kelola Perbaikan ==
+
+Teknisi -> Jadwal : Memilih Laporan pada Tab Dikerjakan
+
+Jadwal -> Kelola : Meminta Detail Pekerjaan
+
+Kelola -> Laporan : Mengambil Detail Pekerjaan
+
+Laporan --> Kelola : Detail Pekerjaan
+
+Kelola --> Jadwal : Menampilkan Detail Pekerjaan
+
+alt Memulai Perbaikan
+
+    Teknisi -> Jadwal : Klik Tombol Kerjakan
+
+    Jadwal -> Kelola : Memperbarui Status DIPROSES
+
+    Kelola -> Laporan : Menyimpan Status DIPROSES
+
+    Laporan --> Kelola : Status Diperbarui
+
+    Kelola --> Jadwal : Menampilkan Pesan Berhasil
+
+else Menunda Perbaikan
+
+    Teknisi -> Jadwal : Klik Tombol Pending
+
+    Jadwal --> Teknisi : Menampilkan Form Alasan
+
+    Teknisi -> Jadwal : Mengisi Alasan Penundaan
+
+    Teknisi -> Jadwal : Klik Tombol Kirim
+
+    Jadwal -> Kelola : Memperbarui Status PENDING
+
+    Kelola -> Laporan : Menyimpan Status dan Catatan
+
+    Laporan --> Kelola : Data Tersimpan
+
+    Kelola --> Jadwal : Menampilkan Pesan Berhasil
+
+else Menandai Tidak Bisa Diperbaiki
+
+    Teknisi -> Jadwal : Klik Tombol Tidak Bisa Diperbaiki
+
+    Jadwal --> Teknisi : Menampilkan Konfirmasi
+
+    Teknisi -> Jadwal : Mengkonfirmasi
+
+    Jadwal -> Kelola : Memperbarui Status RUSAK
+
+    Kelola -> Laporan : Menyimpan Status RUSAK
+
+    Laporan --> Kelola : Status Diperbarui
+
+    Kelola --> Jadwal : Menampilkan Pesan Berhasil
+
+else Menyelesaikan Perbaikan
+
+    Teknisi -> Jadwal : Klik Tombol Selesai
+
+    Jadwal --> Teknisi : Menampilkan Form Penyelesaian
+
+    Teknisi -> Jadwal : Mengunggah Foto Bukti
+
+    Teknisi -> Jadwal : Mengisi Uraian Pekerjaan
+
+    Teknisi -> Jadwal : Klik Tombol Kirim
+
+    Jadwal -> Kelola : Memperbarui Status SELESAI
+
+    Kelola -> Laporan : Menyimpan Foto dan Catatan
+
+    Laporan --> Kelola : Data Tersimpan
+
+    Kelola --> Jadwal : Menampilkan Pesan Berhasil
+
+end
+
+== Melanjutkan Pekerjaan Pending ==
+
+Teknisi -> Jadwal : Memilih Tab Pending
+
+Jadwal -> Kelola : Meminta Data Pending
+
+Kelola -> Laporan : Mengambil Data Pending
+
+Laporan --> Kelola : Data Pending
+
+Kelola --> Jadwal : Menampilkan Data Pending
+
+alt Sparepart Sudah Tersedia
+
+    Teknisi -> Jadwal : Klik Tombol Lanjutkan Kerja
+
+    Jadwal -> Kelola : Memperbarui Status DIPROSES
+
+    Kelola -> Laporan : Menyimpan Status DIPROSES
+
+    Laporan --> Kelola : Status Diperbarui
+
+    Kelola --> Jadwal : Menampilkan Pesan Berhasil
+
+else Sparepart Belum Tersedia
+
+    Kelola --> Jadwal : Menampilkan Status PENDING
+
+end
+
+@enduml

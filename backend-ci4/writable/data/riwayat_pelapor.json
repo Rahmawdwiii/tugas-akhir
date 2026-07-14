@@ -1,0 +1,129 @@
+[
+    {
+        "nomor_laporan": "LPR-20251120-155055",
+        "tanggal_laporan": "2025-11-20",
+        "nama_alat": "TV\/SMART TV",
+        "lokasi_alat": "Gedung MI, Lantai 2, Ruang Dosen",
+        "unit": "Manajemen Informatika",
+        "status_kerusakan": "-",
+        "kerusakan_keluhan": "tidak dapat terhubung ke wifi",
+        "status": "Menunggu",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": null
+    },
+    {
+        "nomor_laporan": "LPR-20251120-150910",
+        "tanggal_laporan": "2025-11-20",
+        "nama_alat": "AIR CONDITIONER",
+        "lokasi_alat": "Gedung MI, Lantai 2, Ruang Teori 1",
+        "unit": "Manajemen Informatika",
+        "status_kerusakan": "Ringan",
+        "kerusakan_keluhan": "tidak dingin",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": "Menunggu"
+    },
+    {
+        "nomor_laporan": "LPR-20251120-143422",
+        "tanggal_laporan": "2025-11-20",
+        "nama_alat": "STOP KONTAK",
+        "lokasi_alat": "Gedung MI, Lantai 2, Ruang Teori 2",
+        "unit": "Manajemen Informatika",
+        "status_kerusakan": "Sedang",
+        "kerusakan_keluhan": "tidak menyala",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": "Menunggu"
+    },
+    {
+        "nomor_laporan": "LPR-20251120-143129",
+        "tanggal_laporan": "2025-11-20",
+        "nama_alat": "Komputer\/PC",
+        "lokasi_alat": "Gedung Mesin, Lantai 2, Ruang Dosen Mesin",
+        "unit": "Teknik Mesin",
+        "status_kerusakan": "Ringan",
+        "kerusakan_keluhan": "tidak bisa hiduo",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": "Menunggu"
+    },
+    {
+        "nomor_laporan": "LPR-20251120-143042",
+        "tanggal_laporan": "2025-11-20",
+        "nama_alat": "KIPAS ANGIN",
+        "lokasi_alat": "Lokasi Umum Pos Satpam",
+        "unit": "Pos Satpam",
+        "status_kerusakan": "Ringan",
+        "kerusakan_keluhan": "baling-balingnya patah",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": "Menunggu"
+    },
+    {
+        "nomor_laporan": "LPR-20251120-142424",
+        "tanggal_laporan": "2025-11-20",
+        "nama_alat": "AIR CONDITIONER",
+        "lokasi_alat": "Gedung Bahasa, Lantai 3, Ruang Teori 4",
+        "unit": "Bahasa dan Pariwisata",
+        "status_kerusakan": "Sedang",
+        "kerusakan_keluhan": "ac nya tidak dingin lagi",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": "Menunggu"
+    },
+    {
+        "nomor_laporan": "LPR-20251120-142048",
+        "tanggal_laporan": "2025-11-20",
+        "nama_alat": "LAMPU PENERANGAN",
+        "lokasi_alat": "Gedung MI, Lantai 2, Ruang Teori 1",
+        "unit": "Manajemen Informatika",
+        "status_kerusakan": "Ringan",
+        "kerusakan_keluhan": "lampu menjadi redup",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": "Diperbaiki",
+        "updated_at": "2025-11-20 12:08:28"
+    },
+    {
+        "nomor_laporan": "LPR-20251119-145140",
+        "tanggal_laporan": "2025-11-19",
+        "nama_alat": "Komputer\/PC",
+        "lokasi_alat": "Gedung MI, Lantai 3, Lab 3 (Jaringan Komputer)",
+        "unit": "Manajemen Informatika",
+        "status_kerusakan": "Sedang",
+        "kerusakan_keluhan": "tidak bisa hidup, tidak tahu kenapa",
+        "status": "Menunggu",
+        "tanggal_perbaikan": "2025-11-20",
+        "status_perbaikan": "Selesai"
+    },
+    {
+        "nomor_laporan": "LPR-20251119-200859",
+        "tanggal_laporan": "2025-11-19",
+        "nama_alat": "MCB",
+        "lokasi_alat": "Gedung Bahasa dan Pariwisata, Lantai 3, Ruang Teori 5",
+        "unit": "Bahasa dan Pariwisata",
+        "status_kerusakan": "-",
+        "kerusakan_keluhan": "belum tahu",
+        "status": "Menunggu",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": null
+    },
+    {
+        "nomor_laporan": "LPR-20251120-080231",
+        "tanggal_laporan": "2025-11-20",
+        "nama_alat": "STOP KONTAK",
+        "lokasi_alat": "Gedung Mesin, Lantai 1, Bengkel Produksi",
+        "unit": "Teknik Mesin",
+        "status_kerusakan": "-",
+        "kerusakan_keluhan": "kabelnya putus",
+        "status": "Menunggu",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": null
+    },
+    {
+        "nomor_laporan": "LPR-20251120-081011",
+        "tanggal_laporan": "2025-11-20",
+        "nama_alat": "TELPON",
+        "lokasi_alat": "Gedung Bahasa dan Pariwisata , Lantai 3, Ruang Teori 4",
+        "unit": "Bahasa dan Pariwisata",
+        "status_kerusakan": "-",
+        "kerusakan_keluhan": "tidak ada sinyal",
+        "status": "Menunggu",
+        "tanggal_perbaikan": null,
+        "status_perbaikan": null
+    }
+]

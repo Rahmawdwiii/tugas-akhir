@@ -1,0 +1,36 @@
+@startuml Mengelola Analisis FP-Growth
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Admin
+
+boundary "Halaman Analisis FP-Growth" as Analisis
+control "Analisis FP-Growth" as FPGrowth
+entity "Data Laporan" as Laporan
+
+Admin -> Analisis : Mengakses Halaman Dashboard
+Analisis --> Admin : Menampilkan Halaman Dashboard
+
+Admin -> Analisis : Pilih Menu FP-Growth
+
+Analisis --> Admin : Menampilkan Halaman Analisis
+
+Admin -> Analisis : Input Min Support
+Admin -> Analisis : Input Min Confidence
+Admin -> Analisis : Pilih Parameter Analisis
+
+Admin -> Analisis : Klik Generate Analysis
+
+Analisis -> FPGrowth : Mengambil Data Laporan
+
+FPGrowth -> Laporan : Mengambil Data Laporan
+
+Laporan --> FPGrowth : Data Laporan
+
+FPGrowth -> FPGrowth : Menjalankan FP-Growth
+FPGrowth -> FPGrowth : Menghasilkan Rule Association
+
+FPGrowth --> Analisis : Menampilkan Hasil Analisis
+
+@enduml

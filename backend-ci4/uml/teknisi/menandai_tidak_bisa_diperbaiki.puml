@@ -1,0 +1,35 @@
+@startuml Menandai Tidak Bisa Diperbaiki
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Teknisi
+
+boundary "Halaman Dikerjakan" as Dikerjakan
+control "Status Kerusakan" as StatusRusak
+entity "Data Laporan" as Laporan
+
+Teknisi -> Dikerjakan : Mengakses Halaman Dashboard
+Dikerjakan --> Teknisi : Menampilkan Halaman Dashboard
+
+Teknisi -> Dikerjakan : Mengakses Tab Dikerjakan
+
+Teknisi -> Dikerjakan : Mengklik Tombol Tidak Bisa Diperbaiki
+
+Dikerjakan -> StatusRusak : Meminta Konfirmasi
+
+StatusRusak --> Dikerjakan : Meminta Konfirmasi
+
+Teknisi -> Dikerjakan : Mengkonfirmasi Status Rusak
+
+Dikerjakan -> StatusRusak : Memperbarui Status Menjadi RUSAK
+
+StatusRusak -> Laporan : Menyimpan Status Menjadi RUSAK
+
+Laporan --> StatusRusak : Status Berhasil Disimpan
+
+StatusRusak --> Dikerjakan : Memperbarui Progress ke Admin dan Pelapor
+
+StatusRusak --> Dikerjakan : Menampilkan Pesan Berhasil
+
+@enduml

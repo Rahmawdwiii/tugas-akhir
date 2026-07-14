@@ -1,0 +1,24 @@
+@startuml Logout
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Teknisi
+
+boundary "Halaman Dashboard" as Dashboard
+control "Logout" as Logout
+entity "Data User" as User
+
+Teknisi -> Dashboard : Mengakses Halaman Dashboard
+
+Teknisi -> Dashboard : Mengklik Tombol Logout
+
+Dashboard -> Logout : Menghapus Sesi Pengguna
+
+Logout -> User : Menghapus Sesi Pengguna
+
+User --> Logout : Sesi Berhasil Dihapus
+
+Logout --> Dashboard : Mengarahkan ke Halaman Landing Page
+
+@enduml

@@ -1,0 +1,311 @@
+@startuml ClassDiagramFinal
+
+top to bottom direction
+
+skinparam linetype ortho
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+skinparam ArrowThickness 2
+skinparam ArrowColor black
+skinparam ClassBorderThickness 2
+
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 13
+
+hide circle
+
+'==================================================
+' USER
+'==================================================
+
+class User {
+    - idUser : int
+    - username : string
+    - password : string
+    - nama : string
+    - jabatan : string
+    - akses : string
+
+    + login()
+    + logout()
+}
+
+class Admin {
+    + kelolaUser()
+    + kelolaDataMaster()
+    + kelolaAntrianPerbaikan()
+    + kelolaBarangRusak()
+    + kelolaPeminjaman()
+    + analisisFPGrowth()
+}
+
+class Teknisi {
+    + lihatJadwalPerbaikan()
+}
+
+class Pelapor {
+    + buatLaporan()
+    + lihatDashboard()
+    + lihatRiwayatPerbaikan()
+}
+
+'==================================================
+' LAPORAN
+'==================================================
+
+class Laporan {
+
+    - idLaporan : int
+    - nomorLaporan : string
+    - tanggalLaporan : datetime
+    - namaPelapor : string
+    - namaAlat : string
+    - nomorInventaris : string
+    - lokasi : string
+    - unit : string
+    - kerusakan : text
+    - komplain : text
+    - mediaLaporan : string
+    - statusLaporan : string
+    - ratingPelapor : int
+    - validasiKepala : string
+
+    + tambahLaporan()
+    + ubahLaporan()
+    + hapusLaporan()
+    + filterData()
+    + exportExcel()
+    + exportPDF()
+    + lihatDetailLaporan()
+
+}
+
+'==================================================
+' MASTER ALAT
+'==================================================
+
+class MasterAlat {
+
+    - idAlat : int
+    - nomorInventaris : string
+    - namaAlat : string
+    - kategori : string
+
+    + tambahData()
+    + ubahData()
+    + hapusData()
+
+}
+
+class MasterLokasi {
+
+    - idLokasi : int
+    - nomorInventaris : string
+    - gedung : string
+    - lantai : string
+    - ruangan : string
+    - kampus : string
+
+    + tambahData()
+    + ubahData()
+    + hapusData()
+
+}
+
+class MasterUnit {
+
+    - idUnit : int
+    - namaUnit : string
+    - kategori : string
+
+    + tambahData()
+    + ubahData()
+    + hapusData()
+
+}
+
+class MasterStok {
+
+    - idStok : int
+    - nomorInventaris : string
+    - namaBarang : string
+    - jumlah : int
+
+    + tambahData()
+    + ubahData()
+    + hapusData()
+    + updateStok()
+
+}
+
+'==================================================
+' JADWAL PERBAIKAN
+'==================================================
+
+class JadwalPerbaikan {
+
+    - idJadwal : int
+    - tanggalPerbaikan : date
+    - jenisPenugasan : string
+    - statusPerbaikan : string
+    - waktuDijadwalkan : datetime
+
+    + buatJadwal()
+    + ubahJadwal()
+    + lihatJadwal()
+
+}
+
+'==================================================
+' PERBAIKAN
+'==================================================
+
+class Perbaikan {
+
+    - idPerbaikan : int
+    - statusKerusakan : string
+    - hasilPerbaikan : string
+    - catatanTeknisi : text
+    - fotoBukti : text
+    - waktuMulai : datetime
+    - waktuDilanjutkan : datetime
+    - waktuSelesai : datetime
+    - waktuCekKerusakan : datetime
+
+    + tentukanStatusKerusakan()
+    + mulaiPerbaikan()
+    + tundaPerbaikan()
+    + lanjutkanPerbaikan()
+    + selesaikanPerbaikan()
+    + tandaiTidakBisaDiperbaiki()
+
+}
+
+'==================================================
+' VALIDASI
+'==================================================
+
+class Validasi {
+
+    - idValidasi : int
+    - jenisValidasi : string
+    - hasilValidasi : string
+    - ulasan : text
+    - rating : int
+
+    + validasiLaporan()
+    + simpanUlasan()
+    + simpanRating()
+
+}
+
+'==================================================
+' BARANG RUSAK
+'==================================================
+
+class BarangRusak {
+
+    - idBarangRusak : int
+    - nomorLaporan : string
+    - nomorInventaris : string
+    - namaAlat : string
+    - lokasi : string
+    - unit : string
+    - alasanRusak : text
+    - tanggalRusak : datetime
+
+    + filterData()
+    + exportExcel()
+    + hapusData()
+
+}
+
+'==================================================
+' PEMINJAMAN
+'==================================================
+
+class Peminjaman {
+
+    - idPeminjaman : int
+    - nomor : string
+    - kegiatan : string
+    - lokasi : string
+    - tanggalMulai : date
+    - tanggalSelesai : date
+    - keterangan : text
+
+    + tambahPeminjaman()
+    + filterData()
+    + exportExcel()
+    + exportPDF()
+
+}
+
+'==================================================
+' FP GROWTH
+'==================================================
+
+class FPGrowth {
+
+    - minSupport : double
+    - minConfidence : double
+
+    + generateAnalysis()
+    + generateRuleAssociation()
+
+}
+
+'==================================================
+' INHERITANCE
+'==================================================
+
+User <|-- Admin
+User <|-- Teknisi
+User <|-- Pelapor
+
+'==================================================
+' POSITIONING
+'==================================================
+
+Admin -[hidden]right- Teknisi
+Teknisi -[hidden]right- Pelapor
+
+MasterLokasi -[hidden]left- MasterAlat
+MasterUnit -[hidden]right- MasterAlat
+
+Laporan -[hidden]down- Pelapor
+
+JadwalPerbaikan -[hidden]down- Laporan
+Perbaikan -[hidden]down- JadwalPerbaikan
+Validasi -[hidden]down- Perbaikan
+
+BarangRusak -[hidden]left- Perbaikan
+Peminjaman -[hidden]right- Perbaikan
+
+FPGrowth -[hidden]down- Validasi
+
+'==================================================
+' RELASI DATABASE
+'==================================================
+
+Pelapor "1" --> "*" Laporan : membuat
+
+Teknisi "1" --> "*" MasterAlat : bertanggung jawab
+
+Laporan "1" --> "0..1" JadwalPerbaikan : dijadwalkan
+
+Teknisi "1" --> "*" JadwalPerbaikan : ditugaskan
+
+JadwalPerbaikan "1" --> "1" Perbaikan : dikerjakan
+
+Laporan "1" --> "*" Validasi : divalidasi
+
+Perbaikan "1" --> "*" Validasi : menghasilkan
+
+Laporan "1" --> "0..1" BarangRusak : menjadi
+
+FPGrowth ..> Laporan : menganalisis
+
+@enduml

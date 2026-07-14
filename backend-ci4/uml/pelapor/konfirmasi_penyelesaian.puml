@@ -1,0 +1,90 @@
+@startuml Konfirmasi Penyelesaian
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Pelapor
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Halaman Validasi Laporan" as ValidasiPage
+
+control "Konfirmasi Penyelesaian" as Validasi
+
+entity "Data Laporan" as DataLaporan
+entity "Data Validasi" as DataValidasi
+
+Pelapor -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Pelapor : Menampilkan Halaman Dashboard
+
+Pelapor -> ValidasiPage : Memilih Tab Perlu Validasi
+
+ValidasiPage -> Validasi : Meminta Daftar Laporan Perlu Validasi
+
+activate Validasi
+
+Validasi -> DataLaporan : Mengambil Daftar Laporan
+
+activate DataLaporan
+DataLaporan --> Validasi : Data Laporan
+deactivate DataLaporan
+
+Validasi --> ValidasiPage : Menampilkan Daftar Laporan
+
+deactivate Validasi
+
+Pelapor -> ValidasiPage : Mengklik Salah Satu Laporan
+
+ValidasiPage -> Validasi : Meminta Detail Laporan
+
+activate Validasi
+
+Validasi -> DataLaporan : Mengambil Detail Laporan
+
+activate DataLaporan
+DataLaporan --> Validasi : Detail Laporan
+deactivate DataLaporan
+
+Validasi --> ValidasiPage : Menampilkan Detail Laporan
+
+deactivate Validasi
+
+Pelapor -> ValidasiPage : Mengklik Tombol Selesai
+
+ValidasiPage -> Validasi : Meminta Form Rating dan Ulasan
+
+activate Validasi
+
+Validasi --> ValidasiPage : Menampilkan Form Rating dan Ulasan
+
+deactivate Validasi
+
+Pelapor -> ValidasiPage : Mengisi Rating dan Ulasan
+
+Pelapor -> ValidasiPage : Mengklik Tombol Kirim
+
+ValidasiPage -> Validasi : Menyimpan Rating dan Ulasan
+
+activate Validasi
+
+Validasi -> DataValidasi : Menyimpan Rating dan Ulasan
+
+activate DataValidasi
+DataValidasi --> Validasi : Data Berhasil Disimpan
+deactivate DataValidasi
+
+Validasi --> ValidasiPage : Menampilkan Pesan Berhasil
+
+deactivate Validasi
+
+@enduml

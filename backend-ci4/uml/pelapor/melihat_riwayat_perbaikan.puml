@@ -1,0 +1,75 @@
+@startuml Mengelola Riwayat Perbaikan Pelapor
+
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Pelapor
+
+boundary "Halaman Dashboard" as DashboardUI
+boundary "Halaman Riwayat Perbaikan" as RiwayatUI
+control "Riwayat Perbaikan" as Riwayat
+entity "Data Riwayat" as DataRiwayat
+
+Pelapor -> DashboardUI : Mengakses Halaman Dashboard
+
+DashboardUI --> Pelapor : Menampilkan Halaman Dashboard
+
+Pelapor -> RiwayatUI : Mengakses Menu Riwayat Perbaikan
+
+RiwayatUI -> Riwayat : Meminta Data Riwayat Perbaikan
+
+Riwayat -> DataRiwayat : Mengambil Data Riwayat
+
+DataRiwayat --> Riwayat : Data Riwayat
+
+Riwayat --> RiwayatUI : Menampilkan Data Riwayat Perbaikan
+
+
+alt Menggunakan Filter
+
+    Pelapor -> RiwayatUI : Memilih Filter Data
+
+    RiwayatUI -> Riwayat : Meminta Hasil Filter
+
+    Riwayat -> DataRiwayat : Mengambil Data Hasil Filter
+
+    DataRiwayat --> Riwayat : Data Hasil Filter
+
+    Riwayat --> RiwayatUI : Menampilkan Hasil Filter
+
+end
+
+
+alt Export Excel
+
+    Pelapor -> RiwayatUI : Mengklik Tombol Excel
+
+    RiwayatUI -> Riwayat : Meminta Export Excel
+
+    Riwayat --> RiwayatUI : Menghasilkan File Excel
+
+else Export PDF
+
+    Pelapor -> RiwayatUI : Mengklik Tombol PDF
+
+    RiwayatUI -> Riwayat : Meminta Export PDF
+
+    Riwayat --> RiwayatUI : Menghasilkan File PDF
+
+end
+
+
+== Melihat Detail Laporan ==
+
+Pelapor -> RiwayatUI : Memilih Salah Satu Laporan
+
+RiwayatUI -> Riwayat : Meminta Detail Laporan
+
+Riwayat -> DataRiwayat : Mengambil Detail Laporan
+
+DataRiwayat --> Riwayat : Detail Laporan
+
+Riwayat --> RiwayatUI : Menampilkan Detail Laporan
+
+@enduml

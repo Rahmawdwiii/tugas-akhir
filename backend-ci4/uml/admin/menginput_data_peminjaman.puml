@@ -1,0 +1,77 @@
+@startuml Menginput Data Peminjaman
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Admin
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Halaman Laporan Peminjaman" as PeminjamanPage
+control "Data Peminjaman" as Peminjaman
+entity "Data Peminjaman" as DataPeminjaman
+
+Admin -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Admin : Menampilkan Halaman Dashboard
+
+Admin -> PeminjamanPage : Mengakses Halaman Laporan Peminjaman
+
+alt Tambah
+
+Admin -> PeminjamanPage : Mengklik Tombol Tambah
+
+PeminjamanPage -> Peminjaman : Menampilkan Formulir Peminjaman
+
+Peminjaman -> PeminjamanPage : Menampilkan Formulir Peminjaman
+
+Admin -> PeminjamanPage : Mengisi Seluruh Data pada Formulir
+
+Admin -> PeminjamanPage : Mengklik Tombol Simpan
+
+PeminjamanPage -> Peminjaman : Menyimpan Data Peminjaman
+
+Peminjaman -> DataPeminjaman : Menyimpan Data Peminjaman
+
+DataPeminjaman --> Peminjaman : Data Berhasil Disimpan
+
+end
+
+alt Filter
+
+Admin -> PeminjamanPage : Mengklik Tombol Filter
+
+PeminjamanPage -> Peminjaman : Menampilkan Daftar Laporan Tersaring
+
+Peminjaman -> PeminjamanPage : Menampilkan Daftar Laporan Tersaring
+
+end
+
+alt Excel
+
+Admin -> PeminjamanPage : Mengklik Tombol Excel
+
+PeminjamanPage -> Peminjaman : Menghasilkan File Excel
+
+Peminjaman -> PeminjamanPage : Menghasilkan File Excel
+
+else PDF
+
+Admin -> PeminjamanPage : Mengklik Tombol PDF
+
+PeminjamanPage -> Peminjaman : Menghasilkan File PDF
+
+Peminjaman -> PeminjamanPage : Menghasilkan File PDF
+
+end
+
+@enduml

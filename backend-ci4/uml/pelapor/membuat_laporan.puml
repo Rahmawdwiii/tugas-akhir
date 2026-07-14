@@ -1,0 +1,53 @@
+@startuml Membuat Laporan
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Pelapor
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Form Laporan \n Kerusakan" as FormLaporan
+
+control "Laporan \n Kerusakan" as Laporan
+
+entity "Data Laporan" as DataLaporan
+
+Pelapor -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Pelapor : Menampilkan Halaman Dashboard
+
+Pelapor -> FormLaporan : Mengakses Halaman Form Laporan
+
+FormLaporan -> Pelapor : Menampilkan Formulir Laporan Kerusakan
+
+Pelapor -> FormLaporan : Mengisi Data Kerusakan pada Formulir
+
+Pelapor -> FormLaporan : Mengklik Tombol Kirim Laporan
+
+FormLaporan -> Laporan : Menyimpan Laporan Kerusakan
+
+activate Laporan
+
+Laporan -> DataLaporan : Menyimpan Laporan Kerusakan
+
+activate DataLaporan
+DataLaporan --> Laporan : Data Tersimpan
+deactivate DataLaporan
+
+Laporan -> FormLaporan : Menampilkan Pesan Konfirmasi Berhasil
+
+Laporan -> FormLaporan : Meneruskan Laporan ke Admin & Teknisi
+
+deactivate Laporan
+
+@enduml

@@ -1,0 +1,97 @@
+@startuml Mengelola Data Barang Rusak
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+
+skinparam DefaultFontName Arial
+skinparam DefaultFontSize 14
+skinparam DefaultFontStyle bold
+
+skinparam SequenceMessageAlign center
+
+skinparam actor {
+    BorderThickness 3
+    FontStyle bold
+    FontSize 15
+}
+
+skinparam participant {
+    BorderThickness 3
+    FontStyle bold
+    FontSize 14
+}
+
+hide footbox
+
+actor Admin
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Halaman Data \nBarang Rusak" as BarangRusak
+
+control "Pengelolaan \nBarang Rusak" as PengelolaanBarang
+
+entity "Data Barang \nRusak" as DataBarang
+
+Admin -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Admin : Menampilkan Halaman Dashboard
+
+Admin -> BarangRusak : Mengakses Halaman Data Barang Rusak
+
+BarangRusak -> PengelolaanBarang : Meminta Data Barang Rusak
+
+activate PengelolaanBarang
+
+PengelolaanBarang -> DataBarang : Mengambil Data Barang Rusak
+
+activate DataBarang
+DataBarang --> PengelolaanBarang : Data Barang Rusak
+deactivate DataBarang
+
+PengelolaanBarang --> BarangRusak : Menampilkan Data Barang Rusak
+
+deactivate PengelolaanBarang
+
+alt Filter
+
+    Admin -> BarangRusak : Mengklik Tombol Filter
+
+    BarangRusak -> PengelolaanBarang : Mengirim Kriteria Filter
+
+    PengelolaanBarang -> DataBarang : Mengambil Data Sesuai Filter
+
+    DataBarang --> PengelolaanBarang : Data Hasil Filter
+
+    PengelolaanBarang --> BarangRusak : Menampilkan Data Hasil Filter
+
+else Export Excel
+
+    Admin -> BarangRusak : Mengklik Tombol Export Excel
+
+    BarangRusak -> PengelolaanBarang : Mengirim Permintaan Export Excel
+
+    PengelolaanBarang --> BarangRusak : Menghasilkan File Excel
+
+else Hapus
+
+    Admin -> BarangRusak : Mengklik Tombol Hapus
+
+    BarangRusak -> PengelolaanBarang : Mengirim Permintaan Hapus
+
+    PengelolaanBarang --> BarangRusak : Menampilkan Konfirmasi Hapus
+
+    Admin -> BarangRusak : Mengkonfirmasi Penghapusan
+
+    BarangRusak -> PengelolaanBarang : Mengirim Konfirmasi Penghapusan
+
+    PengelolaanBarang -> DataBarang : Menghapus Data Barang Rusak
+
+    DataBarang --> PengelolaanBarang : Data Berhasil Dihapus
+
+    PengelolaanBarang --> BarangRusak : Menampilkan Pesan Berhasil
+
+end
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml Melanjutkan Perbaikan
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Teknisi
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Halaman Pending" as PendingPage
+
+control "Melanjutkan Perbaikan" as Lanjutkan
+
+entity "Data Laporan" as Laporan
+
+Teknisi -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Teknisi : Menampilkan Halaman Dashboard
+
+Teknisi -> PendingPage : Mengakses Tab Pending
+
+Teknisi -> PendingPage : Mengklik Tombol Lanjutkan Kerja
+
+PendingPage -> Lanjutkan : Memperbarui Status Menjadi Diproses
+
+activate Lanjutkan
+
+Lanjutkan -> Laporan : Memperbarui Status Menjadi Diproses
+
+activate Laporan
+Laporan --> Lanjutkan : Status Berhasil Diperbarui
+deactivate Laporan
+
+Lanjutkan -> PendingPage : Memperbarui Progress ke Admin dan Pelapor
+
+deactivate Lanjutkan
+
+@enduml

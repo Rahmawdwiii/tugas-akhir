@@ -1,0 +1,38 @@
+@startuml Menyelesaikan Perbaikan
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Teknisi
+
+boundary "Halaman Dikerjakan" as Dikerjakan
+control "Penyelesaian Perbaikan" as Selesai
+entity "Data Laporan" as Laporan
+
+Teknisi -> Dikerjakan : Mengakses Halaman Dashboard
+Dikerjakan --> Teknisi : Menampilkan Halaman Dashboard
+
+Teknisi -> Dikerjakan : Mengakses Tab Dikerjakan
+
+Teknisi -> Dikerjakan : Mengklik Tombol Selesai
+
+Dikerjakan -> Selesai : Meminta Form Penyelesaian
+
+Selesai --> Dikerjakan : Menampilkan Form Penyelesaian
+
+Teknisi -> Dikerjakan : Upload Foto Bukti
+
+Teknisi -> Dikerjakan : Mengisi Uraian Pekerjaan
+
+Teknisi -> Dikerjakan : Mengklik Tombol Kirim
+
+Dikerjakan -> Selesai : Memperbarui Status Menjadi SELESAI
+
+Selesai -> Laporan : Menyimpan Foto dan Catatan Teknisi
+
+Laporan --> Selesai : Data Berhasil Disimpan
+
+Selesai --> Dikerjakan : Memperbarui Progress ke Admin dan Pelapor
+Selesai --> Dikerjakan : Menampilkan Pesan Berhasil
+
+@enduml

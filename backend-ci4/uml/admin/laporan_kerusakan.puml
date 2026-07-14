@@ -1,0 +1,127 @@
+@startuml Mengelola Laporan Kerusakan
+
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Admin
+
+boundary "Halaman Laporan Kerusakan" as LaporanUI
+control "Laporan Kerusakan" as Kelola
+entity "Data Laporan" as Laporan
+
+Admin -> LaporanUI : Mengakses Menu Laporan Kerusakan
+
+LaporanUI -> Kelola : Meminta Data Laporan Kerusakan
+
+Kelola -> Laporan : Mengambil Data Laporan Kerusakan
+
+Laporan --> Kelola : Data Laporan Kerusakan
+
+Kelola --> LaporanUI : Menampilkan Daftar Laporan Kerusakan
+
+
+== Filter Data ==
+
+Admin -> LaporanUI : Memilih Kriteria Filter
+
+LaporanUI --> Admin : Menampilkan Opsi Filter
+
+LaporanUI -> Kelola : Meminta Data Hasil Filter
+
+Kelola -> Laporan : Mengambil Data Hasil Filter
+
+Laporan --> Kelola : Data Hasil Filter
+
+Kelola --> LaporanUI : Menampilkan Data Hasil Filter
+
+
+== Kelola Data ==
+
+Admin -> LaporanUI : Memilih Salah Satu Laporan
+
+alt Edit Data
+
+    Admin -> LaporanUI : Mengklik Tombol Edit
+
+    LaporanUI --> Admin : Menampilkan Form Edit
+
+    Admin -> LaporanUI : Mengubah Data Laporan
+
+    Admin -> LaporanUI : Mengklik Tombol Simpan
+
+    LaporanUI -> Kelola : Menyimpan Perubahan Data
+
+    Kelola -> Laporan : Memperbarui Data Laporan
+
+    Laporan --> Kelola : Perubahan Data Tersimpan
+
+    Kelola --> LaporanUI : Menampilkan Pesan Berhasil
+
+else Hapus Data
+
+    Admin -> LaporanUI : Mengklik Tombol Hapus
+
+    LaporanUI --> Admin : Menampilkan Konfirmasi Hapus
+
+    Admin -> LaporanUI : Mengkonfirmasi Penghapusan
+
+    LaporanUI -> Kelola : Menghapus Data Laporan
+
+    Kelola -> Laporan : Menghapus Data Laporan
+
+    Laporan --> Kelola : Data Berhasil Dihapus
+
+    Kelola --> LaporanUI : Menampilkan Pesan Berhasil
+
+end
+
+
+== Export Data ==
+
+alt Export Excel
+
+    Admin -> LaporanUI : Mengklik Tombol Export Excel
+
+    LaporanUI -> Kelola : Meminta Export Excel
+
+    Kelola -> Laporan : Mengambil Data Laporan
+
+    Laporan --> Kelola : Data Laporan
+
+    Kelola --> LaporanUI : Menghasilkan File Excel
+
+else Export PDF
+
+    Admin -> LaporanUI : Mengklik Tombol Export PDF
+
+    LaporanUI -> Kelola : Meminta Export PDF
+
+    Kelola -> Laporan : Mengambil Data Laporan
+
+    Laporan --> Kelola : Data Laporan
+
+    Kelola --> LaporanUI : Menghasilkan File PDF
+
+end
+
+
+== Tambah Data ==
+
+Admin -> LaporanUI : Mengklik Tombol Tambah
+
+LaporanUI --> Admin : Menampilkan Form Tambah Laporan
+
+Admin -> LaporanUI : Mengisi Data Laporan
+
+Admin -> LaporanUI : Mengklik Tombol Simpan
+
+LaporanUI -> Kelola : Menyimpan Laporan Kerusakan
+
+Kelola -> Laporan : Menyimpan Laporan Kerusakan
+
+Laporan --> Kelola : Laporan Kerusakan Tersimpan
+
+Kelola --> LaporanUI : Menampilkan Pesan Berhasil
+
+@enduml

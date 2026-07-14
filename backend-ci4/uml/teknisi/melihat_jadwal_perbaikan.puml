@@ -1,0 +1,34 @@
+@startuml Melihat Jadwal Perbaikan
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Teknisi
+
+boundary "Halaman Jadwal Perbaikan" as Jadwal
+control "Jadwal Perbaikan" as ProsesJadwal
+entity "Data Laporan" as Laporan
+
+Teknisi -> Jadwal : Mengakses Halaman Dashboard
+Jadwal --> Teknisi : Menampilkan Halaman Dashboard
+
+Teknisi -> Jadwal : Buka Jadwal Perbaikan
+
+Jadwal -> ProsesJadwal : Mengklik Tab Tugas Baru
+
+ProsesJadwal -> Laporan : Mengambil Daftar Tugas
+Laporan --> ProsesJadwal : Data Tugas
+
+ProsesJadwal --> Jadwal : Menampilkan Daftar Tugas
+
+Teknisi -> Jadwal : Mengklik Laporan
+
+Jadwal -> ProsesJadwal : Meminta Detail Laporan
+
+ProsesJadwal -> Laporan : Mengambil Detail Laporan
+Laporan --> ProsesJadwal : Data Detail Laporan
+
+ProsesJadwal --> Jadwal : Menampilkan Detail Laporan
+ProsesJadwal --> Jadwal : Menampilkan Alert Hasil FP-Growth
+
+@enduml

@@ -1,0 +1,81 @@
+@startuml Data Master
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Admin
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Halaman Data Master" as MasterPage
+control "Data Master" as Master
+entity "Data Master" as DataMaster
+
+Admin -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Admin : Menampilkan Halaman Dashboard
+
+Admin -> MasterPage : Mengklik Menu Data Master
+
+MasterPage -> Master : Menampilkan Dropdown Submenu
+
+Master -> MasterPage : Menampilkan Dropdown Submenu
+
+Admin -> MasterPage : Memilih Submenu Terkait
+
+alt Tambah/Edit
+
+Admin -> MasterPage : Mengklik Tombol Tambah/Edit Data
+
+MasterPage -> Master : Menampilkan Formulir Data
+
+Master -> MasterPage : Menampilkan Formulir Data
+
+Admin -> MasterPage : Mengisi/Mengedit Data & Klik Simpan
+
+MasterPage -> Master : Menyimpan Data ke Tabel
+
+Master -> DataMaster : Menyimpan Data
+
+DataMaster --> Master : Data Berhasil Disimpan
+
+end
+
+alt Hapus
+
+Admin -> MasterPage : Mengklik Tombol Hapus
+
+MasterPage -> Master : Menampilkan Konfirmasi Hapus
+
+Master -> MasterPage : Menampilkan Konfirmasi Hapus
+
+Admin -> MasterPage : Mengkonfirmasi Hapus
+
+MasterPage -> Master : Menghapus Data dari Tabel
+
+Master -> DataMaster : Menghapus Data
+
+DataMaster --> Master : Data Berhasil Dihapus
+
+end
+
+alt Ekspor
+
+Admin -> MasterPage : Mengklik Tombol Ekspor Excel
+
+MasterPage -> Master : Menghasilkan File Excel
+
+Master -> MasterPage : Menghasilkan File Excel
+
+end
+
+@enduml

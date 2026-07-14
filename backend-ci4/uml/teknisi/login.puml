@@ -1,0 +1,51 @@
+@startuml Login Teknisi
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ParticipantBorderThickness 3
+skinparam LifeLineBorderThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+skinparam SequenceMessageAlign center
+
+hide footbox
+
+actor Teknisi
+
+boundary "Halaman Login" as LoginPage
+
+control "Login" as Login
+
+entity "Data User" as User
+
+Teknisi -> LoginPage : Mengakses Halaman Login
+
+LoginPage -> Teknisi : Menampilkan Halaman Login
+
+Teknisi -> LoginPage : Memasukkan Username & Password
+
+LoginPage -> Login : Memeriksa Username & Password
+
+activate Login
+
+Login -> User : Memeriksa Username & Password
+
+activate User
+User --> Login : Hasil Pemeriksaan
+deactivate User
+
+alt Valid
+
+Login -> LoginPage : Mengarahkan ke Dashboard
+
+else Tidak Valid
+
+Login -> LoginPage : Menampilkan Pesan Error
+
+end
+
+deactivate Login
+
+@enduml

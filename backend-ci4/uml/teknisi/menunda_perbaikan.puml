@@ -1,0 +1,41 @@
+@startuml Menunda Perbaikan
+
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Teknisi
+
+boundary "Halaman Dashboard" as Dashboard
+
+boundary "Halaman Pengerjaan Aktif" as Aktif
+
+control "Penundaan Perbaikan" as Pending
+
+entity "Data Laporan" as Laporan
+
+Teknisi -> Dashboard : Mengakses Halaman Dashboard
+
+Dashboard --> Teknisi : Menampilkan Halaman Dashboard
+
+Teknisi -> Aktif : Mengakses Tab Pengerjaan Aktif
+
+Teknisi -> Aktif : Mengklik Tombol Pending
+
+Aktif -> Pending : Meminta Form Alasan Penundaan
+
+Pending --> Aktif : Menampilkan Form Alasan Penundaan
+
+Teknisi -> Aktif : Mengisi Form Alasan Penundaan
+
+Teknisi -> Aktif : Mengklik Tombol Kirim
+
+Aktif -> Pending : Memperbarui Progres Menjadi PENDING
+
+Pending -> Laporan : Menyimpan Catatan Teknisi
+
+Laporan --> Pending : Catatan Tersimpan
+
+Pending --> Aktif : Menampilkan Pesan Berhasil
+
+@enduml

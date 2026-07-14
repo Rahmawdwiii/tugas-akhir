@@ -1,0 +1,127 @@
+@startuml Mengelola Riwayat
+
+skinparam SequenceLifeLineBorderThickness 2
+skinparam SequenceParticipantBorderThickness 2
+skinparam SequenceArrowThickness 2
+
+actor Teknisi
+
+boundary "Halaman Riwayat" as LaporanUI
+control "Riwayat" as Kelola
+entity "Data Laporan" as Laporan
+
+Teknisi -> LaporanUI : Mengakses Menu Riwayat
+
+LaporanUI -> Kelola : Meminta Data Riwayat
+
+Kelola -> Laporan : Mengambil Data Riwayat
+
+Laporan --> Kelola : Data Riwayat
+
+Kelola --> LaporanUI : Menampilkan Daftar Riwayat
+
+
+== Filter Data ==
+
+Teknisi -> LaporanUI : Memilih Kriteria Filter
+
+LaporanUI --> Teknisi : Menampilkan Opsi Filter
+
+LaporanUI -> Kelola : Meminta Data Hasil Filter
+
+Kelola -> Laporan : Mengambil Data Hasil Filter
+
+Laporan --> Kelola : Data Hasil Filter
+
+Kelola --> LaporanUI : Menampilkan Data Hasil Filter
+
+
+== Kelola Data ==
+
+Teknisi -> LaporanUI : Memilih Salah Satu Laporan
+
+alt Edit Data
+
+    Teknisi -> LaporanUI : Mengklik Tombol Edit
+
+    LaporanUI --> Teknisi : Menampilkan Form Edit
+
+    Teknisi -> LaporanUI : Mengubah Data Laporan
+
+    Teknisi -> LaporanUI : Mengklik Tombol Simpan
+
+    LaporanUI -> Kelola : Menyimpan Perubahan Data
+
+    Kelola -> Laporan : Memperbarui Data Laporan
+
+    Laporan --> Kelola : Perubahan Data Tersimpan
+
+    Kelola --> LaporanUI : Menampilkan Pesan Berhasil
+
+else Hapus Data
+
+    Teknisi -> LaporanUI : Mengklik Tombol Hapus
+
+    LaporanUI --> Teknisi : Menampilkan Konfirmasi Hapus
+
+    Teknisi -> LaporanUI : Mengkonfirmasi Penghapusan
+
+    LaporanUI -> Kelola : Menghapus Data Laporan
+
+    Kelola -> Laporan : Menghapus Data Laporan
+
+    Laporan --> Kelola : Data Berhasil Dihapus
+
+    Kelola --> LaporanUI : Menampilkan Pesan Berhasil
+
+end
+
+
+== Export Data ==
+
+alt Export Excel
+
+    Teknisi -> LaporanUI : Mengklik Tombol Export Excel
+
+    LaporanUI -> Kelola : Meminta Export Excel
+
+    Kelola -> Laporan : Mengambil Data Laporan
+
+    Laporan --> Kelola : Data Laporan
+
+    Kelola --> LaporanUI : Menghasilkan File Excel
+
+else Export PDF
+
+    Teknisi -> LaporanUI : Mengklik Tombol Export PDF
+
+    LaporanUI -> Kelola : Meminta Export PDF
+
+    Kelola -> Laporan : Mengambil Data Laporan
+
+    Laporan --> Kelola : Data Laporan
+
+    Kelola --> LaporanUI : Menghasilkan File PDF
+
+end
+
+
+== Tambah Data ==
+
+Teknisi -> LaporanUI : Mengklik Tombol Tambah
+
+LaporanUI --> Teknisi : Menampilkan Form Tambah Laporan
+
+Teknisi -> LaporanUI : Mengisi Data Laporan
+
+Teknisi -> LaporanUI : Mengklik Tombol Simpan
+
+LaporanUI -> Kelola : Menyimpan Laporan
+
+Kelola -> Laporan : Menampilkan laporan ke admin dan teknisi
+
+Laporan --> Kelola : Laporan Tersimpan
+
+Kelola --> LaporanUI : Menampilkan Pesan Berhasil
+
+@enduml

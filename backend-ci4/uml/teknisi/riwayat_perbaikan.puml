@@ -1,0 +1,116 @@
+@startuml Mengelola Laporan Kerusakan
+
+skinparam shadowing false
+skinparam ArrowThickness 3
+skinparam ArrowColor black
+skinparam ActivityBorderThickness 3
+skinparam DefaultFontName Arial
+skinparam DefaultFontStyle bold
+skinparam DefaultFontSize 14
+
+|Admin|
+
+start
+
+:Mengakses Halaman Dashboard;
+
+:Mengakses Menu Riwayat;
+
+|Sistem|
+
+:Menampilkan Daftar Riwayat;
+
+|Admin|
+
+:Memilih Aksi;
+
+if (Aksi?) then (Tambah)
+
+    :Mengklik Tombol Tambah;
+
+    |Sistem|
+    :Menampilkan Form Tambah Laporan;
+
+    |Admin|
+    :Mengisi Data Laporan;
+    :Mengklik Tombol Simpan;
+
+    |Sistem|
+    :Menyimpan Laporan Kerusakan;
+    :Menampilkan Pesan Berhasil;
+
+elseif (Kelola Data)
+
+    :Memilih Salah Satu Laporan;
+
+    if (Edit/Hapus?) then (Edit)
+
+        :Mengklik Tombol Edit;
+
+        |Sistem|
+        :Menampilkan Form Edit;
+
+        |Admin|
+        :Mengubah Data Laporan;
+        :Mengklik Tombol Simpan;
+
+        |Sistem|
+        :Menyimpan Perubahan Data;
+        :Menampilkan Pesan Berhasil;
+
+    else (Hapus)
+
+        :Mengklik Tombol Hapus;
+
+        |Sistem|
+        :Menampilkan Konfirmasi Penghapusan;
+
+        |Admin|
+        :Mengkonfirmasi Penghapusan;
+
+        |Sistem|
+        :Menghapus Data Laporan;
+        :Menampilkan Pesan Berhasil;
+
+    endif
+
+elseif (Filter)
+
+    :Memilih Kriteria Filter;
+
+    |Sistem|
+    :Menampilkan Opsi Filter;
+
+    |Admin|
+    :Memilih Nilai Filter;
+
+    |Sistem|
+    :Menampilkan Data Hasil Filter;
+
+else (Export)
+
+    if (Format?) then (Excel)
+
+        :Mengklik Tombol Export Excel;
+
+        |Sistem|
+        :Menghasilkan File Excel;
+
+    else (PDF)
+
+        :Mengklik Tombol Export PDF;
+
+        |Sistem|
+        :Menghasilkan File PDF;
+
+    endif
+
+endif
+
+|Sistem|
+
+:Menampilkan Daftar Laporan Kerusakan;
+
+stop
+
+@enduml
